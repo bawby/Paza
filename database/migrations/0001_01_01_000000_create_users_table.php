@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('role', ['admin','auctioneer','company_user','subscriber'])->default('subscriber');
+            $table->foreignId('companies_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('domain_verified')->default(false);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
